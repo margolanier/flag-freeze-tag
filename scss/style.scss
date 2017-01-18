@@ -1,0 +1,108 @@
+@import '../node_modules/foundation-sites/scss/foundation';
+
+@include foundation-global-styles;
+@include foundation-grid;
+
+$font-color: #003778;
+$light1: #f8f8f8;
+$light2: #eaeaea;
+$light3: #ccc;
+
+body {
+	@include grid-row();
+	background: white;
+}
+
+h1, h2, h3 {
+	color: $font-color;
+}
+
+.title {
+	@include grid-column(12);
+}
+
+section.team {
+	@include grid-column(6);
+	
+	ol {
+		@include grid-row();
+		padding-left: 0;
+		
+		
+		li {
+			@include grid-column(12);
+			list-style-position: inside;
+			line-height: 45px;
+			margin-bottom: 10px;
+			padding-right: 0 !important;
+			background-color: $light1;
+			
+			.action {
+				display: inline;
+				float: right;
+			}
+			
+			&.frozen {
+				.get-flag {
+					display: none;
+				}
+				.unfreeze {
+					display: inline-block;
+				}
+			}
+			
+			&.active {
+				.get-flag {
+					display: inline-block;
+				}
+				.unfreeze {
+					display: none;
+				}
+			}
+		}
+	}
+	
+	button, input[type="submit"], select {
+		background-color: $light2;
+		border: 1px solid $light3;
+		padding: 10px;
+		margin-left: 5px;
+		margin-bottom: 5px;
+		width: auto;
+	}
+	
+	select {
+		border-radius: 0;
+	}
+	
+	input {
+		margin: 10px 0;
+		padding: 5px 10px;
+		border-width: 2px;
+		width: calc(100% - 115px); // 5px left margin on button
+		background: white;
+	}
+	
+	input[type="text"] {
+		line-height: 26px;
+	}
+	
+	input[type="submit"] {
+		margin-left: 5px;
+		width: 105px;
+	}
+	
+	&.runners {
+		h2 {
+			border-top: 2px solid $font-color;
+			border-bottom: 2px solid $font-color;
+		}
+	}
+	
+	&.chasers {
+		h2 {
+			border-top: 2px dashed $font-color;
+			border-bottom: 2px dashed $font-color;
+		}
+	}
+}
