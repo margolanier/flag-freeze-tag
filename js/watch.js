@@ -11,6 +11,18 @@ module.exports = {
 		});
 	},
 	
+	watchUnfreeze: function(cb) {
+		let unfreezeBtn = document.querySelectorAll('.unfreeze');
+		unfreezeBtn.forEach(function(button) {
+			button.addEventListener('click', function() {
+				// get value of runner li
+				let buttonDiv = button.parentElement;
+				let id = buttonDiv.parentElement.value;
+				cb(id);
+			});
+		});
+	},
+	
 	watchFlag: function(cb) {
 		let flagBtn = document.querySelectorAll('.get-flag');
 		flagBtn.forEach(function(button) {
@@ -20,18 +32,6 @@ module.exports = {
 				let id = buttonDiv.parentElement.value;
 				cb(id);
 				
-			});
-		});
-	},
-	
-	watchUnfreeze: function(cb) {
-		let unfreezeBtn = document.querySelectorAll('.unfreeze');
-		unfreezeBtn.forEach(function(button) {
-			button.addEventListener('click', function() {
-				// get value of runner li
-				let buttonDiv = button.parentElement;
-				let id = buttonDiv.parentElement.value;
-				cb(id);
 			});
 		});
 	},

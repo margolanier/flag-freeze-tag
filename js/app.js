@@ -25,6 +25,9 @@ window.addEventListener('load', function() {
 	chasers.add('Carlos');
 	chasers.add('Darla');
 	
+	// Keep track of active runners
+	let notFrozen = 2;  // Starting with Alice and Bob
+	
 	// Render team lists to DOM
 	rerender();
 	
@@ -55,17 +58,24 @@ function rerender() {
 	watch();
 }
 
-function watch() {
-	console.log('watching');
+function watch(notFrozen, game) {
 	listen.watchFreeze(function(selected) {
 		action.freezeRunner(selected, rerender);
+		notFrozen--;
+		if (notFrozen === 0) {
+			game.allFrozen = true;
+		}
+	});
+	
+	listen.watchUnfreeze(function(selected) {
+		action.unfreezeRunner(selected, rerender);
+		notFrozen++;
 	});
 	
 	listen.watchFlag(function(selected) {
 		action.captureFlag(selected, rerender);
 	});
-	
-	listen.watchUnfreeze(function(selected) {
-		action.unfreezeRunner(selected, rerender);
-	});
 }
+
+//console.log(game.runnersFrozen());
+//console.log(game.over());

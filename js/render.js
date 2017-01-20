@@ -1,4 +1,3 @@
-let Game = require('./game.js');
 let Team = require('./team.js');
 let Player = require('./player.js');
 
